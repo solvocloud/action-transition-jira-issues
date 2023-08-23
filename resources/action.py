@@ -29,12 +29,11 @@ if not jira_api_token:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("filename")
+    parser.add_argument("payload_string")
     parser.add_argument("transition")
     args = parser.parse_args()
 
-    with open(args.filename, "r") as f:
-        event = json.load(f)
+    event = json.loads(args.payload_string)
 
     commits_url = event["pull_request"]["_links"]["commits"]["href"]
 
