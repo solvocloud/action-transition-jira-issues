@@ -1,0 +1,15 @@
+name: transition-pr-commits-jira-issues
+description: Transitions all JIRA issues associated with a PR's commits
+inputs:
+  payload_file:
+    description: Path to file containing the pull request event payload
+    required: true
+  transition_id:
+    description: The ID of the transition to apply
+    required: true
+runs:
+  using: docker
+  image: docker://ghcr.io/solvocloud/action-transition-jira-issues:1.0
+  args:
+    - ${{ inputs.payload_file }}
+    - ${{ inputs.transition_id }}
